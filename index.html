@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ビジネス世界観診断 — あなたのビジネスIP力を可視化する</title>
+<meta name="description" content="10の質問であなたのビジネスの「世界観力」を5つの軸で可視化。愛されるIPビジネスへの第一歩。">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap');
+
+  :root {
+    --bg: #F6FBFF;
+    --bg-card: #ffffff;
+    --bg-section: #EAF3FB;
+    --primary: #3A7BD5;
+    --primary-dark: #1D2D50;
+    --primary-light: #D6ECFF;
+    --text: #20343A;
+    --text-dim: #5A7A8A;
+    --green: #2A9A6A;
+    --teal: #5A9DA4;
+    --red: #D04040;
+    --orange: #D06030;
+    --gold: #B8860B;
+    --shadow: 0 2px 16px rgba(29,45,80,0.08);
+    --shadow-lg: 0 8px 32px rgba(29,45,80,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 560px; margin: 0 auto; padding: 24px 16px;
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+
+  /* ===== CARD ===== */
+  .card {
+    background: var(--bg-card);
+    border-radius: 16px;
+    padding: 32px 28px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--primary-light);
+  }
+
+  /* ===== SCREENS ===== */
+  .screen { display: none; }
+  .screen.active { display: block; animation: fadeUp 0.4s ease; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== START SCREEN ===== */
+  .start-screen { text-align: center; }
+
+  .start-icon {
+    margin-bottom: 12px;
+  }
+  .start-icon img {
+    width: 200px; height: auto;
+    animation: pulse 2s ease infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+  }
+
+  .start-title {
+    font-size: 28px; font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+    line-height: 1.4;
+  }
+
+  .start-desc {
+    font-size: 15px; color: var(--text-dim);
+    line-height: 2; margin-bottom: 28px;
+  }
+  .start-desc .hl { color: var(--primary); font-weight: 700; }
+  .start-desc .hl-teal { color: var(--teal); font-weight: 700; }
+
+  .start-btn {
+    display: inline-block;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 17px; font-weight: 700;
+    color: #fff; background: var(--primary);
+    border: none; padding: 14px 48px;
+    border-radius: 40px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(58,123,213,0.3);
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+  .start-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(58,123,213,0.35);
+  }
+  .start-btn:active { transform: translateY(0); }
+
+  .start-footer {
+    font-size: 14px; color: var(--text-dim);
+    margin-top: 20px;
+  }
+
+  .copyright {
+    font-size: 11px; color: var(--text-dim);
+    text-align: center; opacity: 0.5;
+    margin-top: 24px;
+  }
+
+  /* ===== QUESTION SCREEN ===== */
+  .q-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 12px;
+  }
+  .q-label {
+    font-size: 13px; font-weight: 700;
+    color: var(--primary); letter-spacing: 1px;
+  }
+  .q-progress-text {
+    font-size: 13px; color: var(--text-dim);
+  }
+
+  .progress-bar {
+    width: 100%; height: 6px;
+    background: var(--bg-section);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--teal), var(--primary));
+    border-radius: 3px;
+    transition: width 0.5s ease;
+  }
+
+  .q-text {
+    font-size: 17px; font-weight: 500;
+    line-height: 1.9;
+    margin-bottom: 24px;
+    color: var(--text);
+    min-height: 56px;
+  }
+  .q-text .typing-cursor {
+    display: inline-block;
+    width: 2px; height: 20px;
+    background: var(--primary);
+    vertical-align: middle;
+    margin-left: 2px;
+    animation: blink 0.6s step-end infinite;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .options {
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .option-btn {
+    display: block; width: 100%;
+    background: var(--bg-section);
+    border: 2px solid transparent;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 15px; color: var(--text);
+    cursor: pointer; padding: 14px 18px;
+    text-align: left;
+    line-height: 1.8;
+    transition: all 0.15s;
+    border-radius: 10px;
+  }
+  .option-btn:hover {
+    border-color: var(--primary);
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(58,123,213,0.1);
+  }
+  .option-btn.selected {
+    border-color: var(--primary);
+    background: var(--primary-light);
+  }
+
+  /* ===== RESULT SCREEN ===== */
+  .result-screen { text-align: center; }
+
+  .result-chara {
+    margin-bottom: 8px;
+  }
+  .result-chara img {
+    width: 180px; height: auto;
+  }
+
+  .result-badge {
+    display: inline-block;
+    font-size: 12px; font-weight: 700;
+    color: var(--primary);
+    background: var(--primary-light);
+    padding: 4px 16px;
+    border-radius: 20px;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    animation: fadeUp 0.5s ease;
+  }
+
+  .result-type-name {
+    font-size: 28px; font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 6px;
+    letter-spacing: 2px;
+    animation: fadeUp 0.5s ease 0.1s both;
+  }
+  .result-tagline {
+    font-size: 15px; color: var(--text-dim);
+    margin-bottom: 24px; line-height: 1.8;
+    animation: fadeUp 0.5s ease 0.2s both;
+  }
+
+  /* Overall Score */
+  .overall-score {
+    text-align: center;
+    margin-bottom: 24px;
+    padding: 20px;
+    background: var(--bg-section);
+    border-radius: 12px;
+    animation: fadeUp 0.5s ease 0.3s both;
+  }
+  .overall-score .score-label {
+    font-size: 13px; font-weight: 700;
+    color: var(--text-dim); letter-spacing: 2px;
+    margin-bottom: 4px;
+  }
+  .overall-score .score-value {
+    font-size: 48px; font-weight: 700;
+    color: var(--primary-dark);
+    letter-spacing: 1px;
+  }
+  .overall-score .score-value span {
+    font-size: 16px; font-weight: 400;
+    color: var(--text-dim);
+  }
+  .overall-score .score-rating {
+    display: inline-block;
+    font-size: 14px; font-weight: 700;
+    margin-top: 8px;
+    padding: 4px 20px;
+    border: 2px solid;
+    border-radius: 20px;
+    letter-spacing: 1px;
+  }
+  .rating-excellent { color: var(--green); border-color: var(--green); background: rgba(42,154,106,0.06); }
+  .rating-good { color: var(--primary); border-color: var(--primary); background: rgba(58,123,213,0.06); }
+  .rating-watch { color: var(--gold); border-color: var(--gold); background: rgba(184,134,11,0.06); }
+  .rating-improve { color: var(--orange); border-color: var(--orange); background: rgba(208,96,48,0.06); }
+  .rating-critical { color: var(--red); border-color: var(--red); background: rgba(208,64,64,0.06); }
+
+  /* Radar chart */
+  .radar-wrap {
+    margin: 0 auto 24px;
+    max-width: 280px;
+    animation: fadeUp 0.5s ease 0.4s both;
+  }
+  .radar-wrap canvas { width: 100%; height: auto; }
+
+  /* Status rows */
+  .status-section {
+    background: var(--bg-section);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    animation: fadeUp 0.5s ease 0.5s both;
+  }
+  .status-title {
+    font-size: 14px; font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+  }
+  .stat-row {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 12px;
+    font-size: 14px;
+  }
+  .stat-row:last-child { margin-bottom: 0; }
+  .stat-row .stat-name {
+    width: 80px; color: var(--text-dim);
+    font-weight: 500; flex-shrink: 0;
+    font-size: 13px;
+  }
+  .stat-row .stat-bar-bg {
+    flex: 1; height: 8px;
+    background: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .stat-row .stat-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 1.2s ease;
+  }
+  .stat-row .stat-val {
+    width: 30px; text-align: right;
+    color: var(--text); font-weight: 700;
+    font-size: 14px;
+  }
+  .stat-row .stat-rating {
+    width: 76px; text-align: center;
+    font-size: 11px; font-weight: 700;
+    padding: 3px 6px;
+    border: 1.5px solid;
+    border-radius: 12px;
+    flex-shrink: 0;
+  }
+
+  /* Description cards */
+  .desc-card {
+    text-align: left;
+    margin-bottom: 16px;
+    padding: 20px;
+    background: var(--bg-section);
+    border-radius: 12px;
+    border-left: 4px solid transparent;
+  }
+  .desc-card h3 {
+    font-size: 15px; font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+  }
+  .desc-card h3.str-title { color: var(--green); }
+  .desc-card h3.str-title::before { content: '● '; }
+  .desc-card.strength-card { border-left-color: var(--green); }
+  .desc-card h3.chal-title { color: var(--orange); }
+  .desc-card h3.chal-title::before { content: '▲ '; }
+  .desc-card.challenge-card { border-left-color: var(--orange); }
+  .desc-card p {
+    font-size: 14px; line-height: 2;
+    color: var(--text-dim);
+  }
+
+  /* CTA */
+  .cta-section {
+    margin: 20px 0;
+    padding: 24px 20px;
+    background: linear-gradient(135deg, #EAF3FB 0%, #D6ECFF 100%);
+    border-radius: 12px;
+    text-align: center;
+    animation: fadeUp 0.5s ease 0.7s both;
+  }
+  .cta-section h3 {
+    font-size: 17px; font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 10px; line-height: 1.7;
+  }
+  .cta-section p {
+    font-size: 13px; color: var(--text-dim);
+    line-height: 1.8; margin-bottom: 16px;
+  }
+  .cta-btn {
+    display: inline-block;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 16px; font-weight: 700;
+    color: #fff; background: var(--primary);
+    border: none; padding: 14px 36px;
+    border-radius: 40px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(58,123,213,0.3);
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+  .cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(58,123,213,0.35);
+  }
+
+  .retry-btn {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 14px; color: var(--text-dim);
+    background: none; border: none;
+    cursor: pointer; margin-top: 16px;
+    transition: color 0.15s;
+  }
+  .retry-btn:hover { color: var(--primary); }
+
+  /* Toast */
+  .toast {
+    position: fixed; bottom: 30px; left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--primary-dark); color: #fff;
+    padding: 10px 24px; border-radius: 8px;
+    font-size: 14px;
+    opacity: 0; transition: all 0.3s;
+    z-index: 999;
+    pointer-events: none;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (pointer: coarse) {
+    .option-btn { min-height: 48px; padding: 14px 18px; }
+    .start-btn { min-height: 48px; }
+    .cta-btn { min-height: 48px; }
+  }
+
+  @media (max-width: 480px) {
+    .container { padding: 16px 12px; }
+    .card { padding: 24px 20px; border-radius: 12px; }
+    .start-title { font-size: 26px; }
+    .q-text { font-size: 17px; }
+    .option-btn { font-size: 15px; }
+    .result-type-name { font-size: 26px; }
+    .overall-score .score-value { font-size: 44px; }
+  }
+
+  @media (max-width: 380px) {
+    .card { padding: 20px 16px; }
+    .start-title { font-size: 24px; letter-spacing: 1px; }
+    .start-desc { font-size: 15px; }
+    .q-text { font-size: 16px; }
+    .option-btn { font-size: 14px; padding: 12px 14px; }
+    .result-type-name { font-size: 22px; }
+    .stat-row .stat-name { width: 72px; font-size: 13px; }
+    .stat-row .stat-val { font-size: 14px; width: 28px; }
+    .stat-row .stat-rating { width: 64px; font-size: 11px; }
+    .overall-score .score-value { font-size: 38px; }
+    .desc-card p { font-size: 14px; }
+    .cta-section p { font-size: 14px; }
+    .cta-section h3 { font-size: 17px; }
+  }
+
+  @supports (padding: env(safe-area-inset-bottom)) {
+    .container {
+      padding-bottom: calc(24px + env(safe-area-inset-bottom));
+    }
+    .toast {
+      bottom: calc(30px + env(safe-area-inset-bottom));
+    }
+  }
+
+  @media (max-height: 500px) and (orientation: landscape) {
+    .container { justify-content: flex-start; padding-top: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ===== START SCREEN ===== -->
+  <div class="screen active" id="startScreen">
+    <div class="card">
+      <div class="start-screen">
+        <div class="start-icon"><img src="top-aria.png" alt="アソビアリ診断キャラクター"></div>
+        <div class="start-title">ビジネス世界観診断</div>
+
+        <div class="start-desc">
+          あなたの<span class="hl">ビジネス</span>が<br>
+          <span class="hl">選ばれる</span>ための<span class="hl-teal">世界観力</span>を<br>
+          <span class="hl">5つのステータス</span>で計測する。<br><br>
+          10の問いに答えて、あなたの世界観力を試そう。
+        </div>
+
+        <button class="start-btn" onclick="startQuiz()">診断をはじめる</button>
+
+        <div class="start-footer">
+          所要時間 約2分 ／ 無料 ／ 登録不要
+        </div>
+
+        <div class="copyright">Copyright &copy;asobiari Inc. All rights reserved.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== QUESTION SCREEN ===== -->
+  <div class="screen" id="questionScreen">
+    <div class="card">
+      <div class="q-header">
+        <span class="q-label" id="qLabel">QUESTION 1</span>
+        <span class="q-progress-text" id="qProgressText">1 / 10</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+      </div>
+      <div class="q-text" id="qText"></div>
+      <div class="options" id="optionsList"></div>
+    </div>
+  </div>
+
+  <!-- ===== RESULT SCREEN ===== -->
+  <div class="screen" id="resultScreen">
+    <div class="card">
+      <div class="result-screen">
+        <div class="result-chara"><img src="sindankekka.png" alt="診断結果"></div>
+        <div class="result-type-name" id="typeName"></div>
+        <div class="result-tagline" id="typeTagline"></div>
+
+        <div class="overall-score" id="overallScore"></div>
+
+        <div class="radar-wrap">
+          <canvas id="radarCanvas" width="300" height="300"></canvas>
+        </div>
+
+        <div class="status-section" id="statusSection">
+          <div class="status-title">ステータス詳細</div>
+        </div>
+
+        <div class="desc-card strength-card" id="typeStrength"></div>
+        <div class="desc-card challenge-card" id="typeChallenge"></div>
+
+        <div class="cta-section">
+          <h3>あなたのビジネスの世界観、<br>一緒に整えませんか？</h3>
+          <p>
+            診断結果をもとに、あなたのビジネスの世界観を<br>
+            どう整え、届け、愛されるIPにするか——<br>
+            60分の無料相談でお話しします。
+          </p>
+          <a href="https://timerex.net/s/yasushi_ono_1706_0699/e9ddf936" class="cta-btn" target="_blank" rel="noopener">無料相談に申し込む</a>
+        </div>
+
+        <button class="retry-btn" onclick="retry()">もういちど診断する</button>
+
+        <div class="copyright">Copyright &copy;asobiari Inc. All rights reserved.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ===== QUESTION DATA =====
+// Scores: [解像度, 言語化力, 伝達力, 一貫性, 独自性]
+const questions = [
+  {
+    text: "「世界観」と聞いて、どんなイメージが浮かぶ？",
+    options: [
+      { label: "自分のビジネスの核にある、想いや価値観のこと", scores: [3,1,1,1,1] },
+      { label: "ブランドの見た目やデザインのトーン", scores: [2,1,1,1,1] },
+      { label: "アニメや映画の話？ビジネスにも関係あるの？", scores: [0,1,2,1,1] },
+      { label: "なんとなく大事そうだけど、よくわからない", scores: [0,0,0,1,0] }
+    ]
+  },
+  {
+    text: "お客様があなたを選ぶ理由は何だと思う？",
+    options: [
+      { label: "私のビジョンや世界観に共感してくれている", scores: [3,1,1,1,1] },
+      { label: "サービスの質やスキルが高いと思われている", scores: [2,1,1,1,1] },
+      { label: "価格や利便性で選ばれることが多い", scores: [0,0,1,2,0] },
+      { label: "リピーターが少なく、理由がよくわからない", scores: [0,0,0,0,0] }
+    ]
+  },
+  {
+    text: "「あなたのビジネスの世界観を一言で教えて」と聞かれたら？",
+    options: [
+      { label: "すぐに答えられる。何度も言語化してきた", scores: [1,3,1,1,1] },
+      { label: "なんとなくイメージはあるけど、言葉にするのが難しい", scores: [1,2,1,1,1] },
+      { label: "考えたことはあるけど、まとまらない", scores: [1,0,1,1,2] },
+      { label: "正直、考えたことがなかった", scores: [0,0,0,0,0] }
+    ]
+  },
+  {
+    text: "もしあなたのビジネスが「本」になるとしたら？",
+    options: [
+      { label: "タイトルも目次もすぐ浮かぶ。語りたいことがたくさんある", scores: [1,3,1,1,1] },
+      { label: "想いはあるけど、一冊にまとめるのは難しい", scores: [1,2,1,1,1] },
+      { label: "何がコンテンツになるのかわからない", scores: [2,0,0,1,1] },
+      { label: "本にするほどの独自性があるとは思えない", scores: [0,0,0,0,0] }
+    ]
+  },
+  {
+    text: "あなたのビジネスの「ストーリー」をお客様に伝えている？",
+    options: [
+      { label: "創業の想いやビジョンを積極的に発信している", scores: [1,1,3,1,1] },
+      { label: "聞かれたら話すけど、自分からはあまり", scores: [1,1,2,1,1] },
+      { label: "何を話せばいいかわからない", scores: [1,1,0,1,2] },
+      { label: "商品やサービスの説明だけで十分だと思っている", scores: [0,0,0,0,0] }
+    ]
+  },
+  {
+    text: "あなたのビジネスの「ファン」はどれくらいいると感じる？",
+    options: [
+      { label: "熱狂的なファンがいて、自ら広めてくれる", scores: [1,1,3,1,1] },
+      { label: "リピーターはいるが「ファン」と呼べるかは微妙", scores: [1,1,2,1,1] },
+      { label: "新規集客は頑張っているが、ファン化に課題がある", scores: [2,1,0,0,1] },
+      { label: "そもそもファンを作るという発想がなかった", scores: [0,0,0,0,0] }
+    ]
+  },
+  {
+    text: "SNS・HP・名刺・商品パッケージ。全部に統一された「らしさ」はある？",
+    options: [
+      { label: "すべてに一貫した世界観を通している", scores: [1,1,1,3,1] },
+      { label: "部分的には揃えているが、バラバラなところもある", scores: [1,1,1,2,1] },
+      { label: "媒体ごとに印象が違うと言われたことがある", scores: [1,2,1,0,0] },
+      { label: "そもそもデザインを統一する発想がなかった", scores: [0,0,0,0,0] }
+    ]
+  },
+  {
+    text: "発信するとき、「自分らしさのルール」はある？",
+    options: [
+      { label: "色・言葉づかい・トーンなど、自分なりの基準がある", scores: [1,1,1,3,1] },
+      { label: "なんとなく意識しているが、明文化はしていない", scores: [1,1,1,2,1] },
+      { label: "その時々で変わる。統一感はあまりないかも", scores: [0,1,2,0,1] },
+      { label: "ルールという発想がなかった", scores: [0,0,0,0,0] }
+    ]
+  },
+  {
+    text: "あなたのビジネスは、同業他社と比べてどう「違う」と思う？",
+    options: [
+      { label: "明確に違いを説明できる。独自のポジションがある", scores: [1,1,1,1,3] },
+      { label: "なんとなく違うとは思うが、言葉にしづらい", scores: [1,1,1,1,2] },
+      { label: "正直、似たようなサービスが多い気がする", scores: [1,2,0,1,0] },
+      { label: "違いを出す方法がわからない", scores: [0,0,0,0,0] }
+    ]
+  },
+  {
+    text: "3年後、あなたのビジネスはどうなっていたい？",
+    options: [
+      { label: "唯一無二のブランドとして、多くの人に愛されている", scores: [1,1,1,1,3] },
+      { label: "安定した売上があり、信頼される存在でいたい", scores: [1,1,1,1,2] },
+      { label: "とにかく今を乗り越えるのに精一杯で、先は見えない", scores: [2,0,1,1,0] },
+      { label: "まだビジョンがぼんやりしている", scores: [0,0,0,0,0] }
+    ]
+  }
+];
+
+const axisColors = ["#3A7BD5", "#5A9DA4", "#1D7AD5", "#D06030", "#2A9A6A"];
+
+// ===== TYPE DEFINITIONS (11 types, radar-shape based) =====
+const H = 60, L = 40;
+
+function classifyType(scores) {
+  const highs = scores.map(s => s >= H);
+  const lows = scores.map(s => s < L);
+  const highCount = highs.filter(Boolean).length;
+  const lowCount = lows.filter(Boolean).length;
+  const avg = scores.reduce((a,b)=>a+b,0) / 5;
+  const max = Math.max(...scores);
+  const min = Math.min(...scores);
+  const spread = max - min;
+  const inner = (scores[0] + scores[1]) / 2;
+  const outer = (scores[2] + scores[3] + scores[4]) / 3;
+
+  if (highCount >= 5 && avg >= 65) return "legendary";
+  if (lowCount >= 4 && avg < L) return "genesis";
+  if (lowCount === 1 && (highCount >= 1 || avg >= 45)) {
+    return ["fog","silence","sealed","divided","transparent"][lows.indexOf(true)];
+  }
+  if (inner >= 55 && outer < 45 && inner > outer + 15) return "sleeping";
+  const outerAlt = (scores[2] + scores[3]) / 2;
+  if (outerAlt >= 55 && inner < 45 && outerAlt > inner + 15) return "borrowed";
+  if (scores[4] >= H && scores[4] > avg + 15 && scores[4] >= max - 5) return "wild";
+  if (spread >= 30 && highCount >= 1 && lowCount >= 1) return "uncharted";
+  if (highCount >= 4 && avg >= 58) return "legendary";
+  const minIdx = scores.indexOf(min);
+  if (min < avg - 8) return ["fog","silence","sealed","divided","transparent"][minIdx];
+  return ["fog","silence","sealed","divided","transparent"][scores.indexOf(Math.min(...scores))];
+}
+
+const typeData = {
+  legendary: {
+    name: "伝説の世界", tagline: "世界観が完成し、人が集まっている",
+    strength: "世界観を深く理解し、言語化し、一貫して伝え、独自のポジションを確立できている。ビジネスがIP（知的財産）として機能し始めている状態だ。あなたのビジネスには「ファンがつく構造」がすでに生まれている。",
+    challenge: "高い水準だからこそ、次のステージへの壁も高い。世界観を「守る」だけでなく「進化」させることが次のテーマだ。この世界をどうスケールさせるか——次の冒険が始まる。"
+  },
+  genesis: {
+    name: "はじまりの世界", tagline: "まだ何もない。でも、ここからすべてが創れる",
+    strength: "世界観がまだ形になっていないということは、逆に言えば「何者にでもなれる」ということ。既成概念に縛られていない今こそ、本当に自分らしい世界観をゼロから設計できる最高のタイミングだ。",
+    challenge: "世界観とは、見た目やデザインの話ではない。あなたのビジネスの「想い」「価値観」「物語」を一つの体系にすること。まずは世界観の正しい理解から始めることで、ビジネスの見え方が根本から変わる。"
+  },
+  sleeping: {
+    name: "眠れる世界", tagline: "中身は豊かなのに、まだ目覚めていない",
+    strength: "世界観の解像度は高く、言語化もできている。つまり「中身」はしっかり持っている。あとは、それを外に届ける仕組みさえ整えれば、世界が一気に動き出すポテンシャルがある。",
+    challenge: "宝の持ち腐れとも言える状態。素晴らしい世界観も、届かなければ存在しないのと同じだ。伝達の導線、発信の統一感、ファンとの接点——「世界の扉を開く」ことが今の最重要テーマ。"
+  },
+  borrowed: {
+    name: "仮初めの世界", tagline: "形は整っている。でも、まだ魂が宿っていない",
+    strength: "発信の仕組みや見た目の統一感はできている。ビジネスの「外側」を整える力がある。それは大きなアドバンテージだ。",
+    challenge: "ただ、その世界観の「核」——本当の想いや価値観がまだ言語化されていない。器はあるのに中身が空洞の状態だ。まず自分の世界観の解像度を上げ、言葉にすること。そうすれば、今ある器が本物の力を持ち始める。"
+  },
+  fog: {
+    name: "霧の世界", tagline: "世界は存在する。しかし霧に包まれて見えない",
+    strength: "言語化力や伝達力、一貫性には力がある。「やるべきこと」を実行するスキルは持っている。",
+    challenge: "ただ、世界観そのものの解像度がまだ低い。「自分のビジネスとは何か」「何のために存在するか」が霧の中にある。この霧を晴らすことが最初の一歩。解像度が上がれば、他のすべてが連動して変わる。"
+  },
+  silence: {
+    name: "沈黙の世界", tagline: "世界観はある。でも、言葉がまだ見つからない",
+    strength: "世界観の大切さを理解し、独自の想いも持っている。解像度は高い。あとは、それを「言葉にする力」さえ身につければ一気に突き抜けるポテンシャルがある。",
+    challenge: "頭の中にある世界観が「言葉」になっていない。これは最ももったいない状態だ。コンセプトを一文にまとめること、ストーリーとして語れるようにすること——言語化が世界を動かす鍵になる。"
+  },
+  sealed: {
+    name: "封印された世界", tagline: "美しい世界がある。でも、扉が閉じている",
+    strength: "世界観の基盤はしっかりしている。自分の信念も言語化できているし、独自性もある。問題は「伝え方」だけ。伝達の仕組みを整えれば、一気にファンを獲得するポテンシャルがある。",
+    challenge: "世界の扉を開く必要がある。ストーリーテリング、発信設計、ファンとの接点づくり——世界観を「体験」に変える導線が今の最重要テーマだ。"
+  },
+  divided: {
+    name: "分断された世界", tagline: "世界の断片が、あちこちに散らばっている",
+    strength: "解像度も高く、言語化もでき、独自性もある。個々のパーツは強い。エネルギーと引き出しの多さは大きな武器だ。",
+    challenge: "ただ、SNS・HP・商品・接客——それぞれが違う印象を与えてしまっている。一本の「軸」を通すことで、散らばった断片が一つの強力な世界になる。統一感こそがブランド力の源だ。"
+  },
+  transparent: {
+    name: "透明な世界", tagline: "世界はあるのに、他と見分けがつかない",
+    strength: "世界観の理解力があり、言語化も伝達もできている。ビジネスの基礎力は高い。「ちゃんとしたビジネス」ができている、その実力は本物だ。",
+    challenge: "しかし「あなたじゃなきゃダメ」と言われているだろうか？ 同業他社との違いが見えにくいと、価格競争に巻き込まれる。あなただけの世界観の核を発掘し、旗を立てること——それがIPへの第一歩だ。"
+  },
+  wild: {
+    name: "野生の世界", tagline: "強烈な個性がある。あとは整えるだけ",
+    strength: "独自性は圧倒的。他にはない「何か」を持っている。これはビジネスの世界観において最も得がたい資質だ。",
+    challenge: "ただ、その個性がまだ体系化されていない。独自性を活かしきるために、解像度を上げ、言語化し、一貫した形で届ける仕組みが必要だ。野生の力を「伝説」に進化させる旅が始まる。"
+  },
+  uncharted: {
+    name: "未踏の世界", tagline: "強みと弱みの差が大きい、開拓途上の世界",
+    strength: "突出して強い部分がある。その尖りは大きな武器であり、あなたのビジネスが持つ可能性の証だ。",
+    challenge: "一方で、大きく凹んでいる部分がある。この凸凹を認識し、弱い部分を底上げすることで、世界は一気に安定する。まず最も低いステータスを集中的に整えることが、世界を完成させる最短ルートだ。"
+  }
+};
+
+// ===== STATE =====
+let currentQ = 0;
+let rawScores = [0, 0, 0, 0, 0];
+let isAnimating = false;
+
+// ===== FUNCTIONS =====
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const target = document.getElementById(id);
+  target.classList.add('active');
+  target.style.animation = 'none';
+  target.offsetHeight;
+  target.style.animation = '';
+}
+
+function startQuiz() {
+  currentQ = 0;
+  rawScores = [0, 0, 0, 0, 0];
+  showScreen('questionScreen');
+  renderQuestion();
+}
+
+// Typing effect
+function typeText(element, text, speed = 25) {
+  return new Promise(resolve => {
+    element.textContent = '';
+    let i = 0;
+    const cursor = document.createElement('span');
+    cursor.className = 'typing-cursor';
+    function type() {
+      if (i < text.length) {
+        element.textContent = text.substring(0, i + 1);
+        element.appendChild(cursor);
+        i++;
+        setTimeout(type, speed);
+      } else {
+        if (cursor.parentNode) cursor.remove();
+        resolve();
+      }
+    }
+    type();
+  });
+}
+
+async function renderQuestion() {
+  const q = questions[currentQ];
+  document.getElementById('qLabel').textContent = `QUESTION ${currentQ + 1}`;
+  document.getElementById('qProgressText').textContent = `${currentQ + 1} / ${questions.length}`;
+  document.getElementById('progressFill').style.width = ((currentQ / questions.length) * 100) + '%';
+
+  const list = document.getElementById('optionsList');
+  list.innerHTML = '';
+  list.style.opacity = '0';
+
+  const qText = document.getElementById('qText');
+  await typeText(qText, q.text, 25);
+
+  list.style.opacity = '1';
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.style.animation = `fadeUp 0.3s ease ${i * 0.06}s both`;
+    btn.textContent = opt.label;
+    btn.onclick = () => selectOption(i, btn);
+    list.appendChild(btn);
+  });
+  isAnimating = false;
+}
+
+function selectOption(idx, btn) {
+  if (isAnimating) return;
+  isAnimating = true;
+  btn.classList.add('selected');
+
+  const scores = questions[currentQ].options[idx].scores;
+  for (let i = 0; i < 5; i++) rawScores[i] += scores[i];
+  currentQ++;
+
+  setTimeout(() => {
+    if (currentQ < questions.length) {
+      showScreen('questionScreen');
+      window.scrollTo({ top: 0 });
+      renderQuestion();
+    } else {
+      showResult();
+    }
+  }, 300);
+}
+
+function getRating(score) {
+  if (score >= 80) return { text: "良好", cls: "rating-excellent" };
+  if (score >= 60) return { text: "概ね良好", cls: "rating-good" };
+  if (score >= 40) return { text: "要注意", cls: "rating-watch" };
+  if (score >= 20) return { text: "要改善", cls: "rating-improve" };
+  return { text: "要根本改善", cls: "rating-critical" };
+}
+
+function showResult() {
+  const maxPerAxis = [0, 0, 0, 0, 0];
+  questions.forEach(q => {
+    for (let a = 0; a < 5; a++) {
+      let best = 0;
+      q.options.forEach(opt => { if (opt.scores[a] > best) best = opt.scores[a]; });
+      maxPerAxis[a] += best;
+    }
+  });
+  const normalized = rawScores.map((s, i) => Math.round((s / maxPerAxis[i]) * 100));
+
+  const typeId = classifyType(normalized);
+  const resultType = typeData[typeId];
+
+  document.getElementById('typeName').textContent = resultType.name;
+  document.getElementById('typeTagline').textContent = resultType.tagline;
+
+  // Overall score
+  const avg = Math.round(normalized.reduce((a,b) => a+b, 0) / 5);
+  const overallRating = getRating(avg);
+  document.getElementById('overallScore').innerHTML = `
+    <div class="score-label">ビジネス世界観スコア</div>
+    <div class="score-value">${avg}<span> / 100</span></div>
+    <div class="score-rating ${overallRating.cls}">${overallRating.text}</div>`;
+
+  // Status bars
+  const ss = document.getElementById('statusSection');
+  const labels = ["解像度", "言語化力", "伝達力", "一貫性", "独自性"];
+  let html = '<div class="status-title">ステータス詳細</div>';
+  normalized.forEach((val, i) => {
+    const r = getRating(val);
+    html += `
+      <div class="stat-row">
+        <span class="stat-name">${labels[i]}</span>
+        <div class="stat-bar-bg"><div class="stat-bar-fill" style="width:0%;background:${axisColors[i]}" data-target="${val}"></div></div>
+        <span class="stat-val">${val}</span>
+        <span class="stat-rating ${r.cls}">${r.text}</span>
+      </div>`;
+  });
+  ss.innerHTML = html;
+
+  document.getElementById('typeStrength').innerHTML = `
+    <h3 class="str-title">あなたのビジネスの強み</h3>
+    <p>${resultType.strength}</p>`;
+  document.getElementById('typeChallenge').innerHTML = `
+    <h3 class="chal-title">あなたのビジネスの世界観の課題</h3>
+    <p>${resultType.challenge}</p>`;
+
+  showScreen('resultScreen');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  setTimeout(() => {
+    document.querySelectorAll('.stat-bar-fill').forEach(bar => {
+      bar.style.width = bar.dataset.target + '%';
+    });
+  }, 400);
+
+  setTimeout(() => drawRadar(normalized), 500);
+  window._resultType = resultType;
+  window._resultScores = normalized;
+}
+
+// ===== RADAR CHART =====
+function drawRadar(scores) {
+  const canvas = document.getElementById('radarCanvas');
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const wrapWidth = canvas.parentElement.clientWidth;
+  const size = Math.min(280, wrapWidth);
+  canvas.width = size * dpr;
+  canvas.height = size * dpr;
+  canvas.style.width = size + 'px';
+  canvas.style.height = size + 'px';
+  ctx.scale(dpr, dpr);
+
+  const cx = size / 2, cy = size / 2;
+  const maxR = size * 0.35;
+  const n = 5;
+  const step = (Math.PI * 2) / n;
+  const start = -Math.PI / 2;
+
+  // Grid
+  ctx.setLineDash([3, 3]);
+  [0.25, 0.5, 0.75, 1.0].forEach(ratio => {
+    ctx.beginPath();
+    for (let i = 0; i <= n; i++) {
+      const a = start + step * (i % n);
+      const x = cx + Math.cos(a) * maxR * ratio;
+      const y = cy + Math.sin(a) * maxR * ratio;
+      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.strokeStyle = '#D6ECFF';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  });
+  ctx.setLineDash([]);
+
+  // Axes
+  for (let i = 0; i < n; i++) {
+    const a = start + step * i;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(cx + Math.cos(a) * maxR, cy + Math.sin(a) * maxR);
+    ctx.strokeStyle = '#D6ECFF';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+
+  // Data polygon
+  ctx.beginPath();
+  scores.forEach((score, i) => {
+    const a = start + step * i;
+    const r = (score / 100) * maxR;
+    const x = cx + Math.cos(a) * r;
+    const y = cy + Math.sin(a) * r;
+    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+  });
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(58, 123, 213, 0.12)';
+  ctx.fill();
+  ctx.strokeStyle = '#3A7BD5';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Dots & labels
+  const lbls = ["解像度", "言語化力", "伝達力", "一貫性", "独自性"];
+  scores.forEach((score, i) => {
+    const a = start + step * i;
+    const r = (score / 100) * maxR;
+    const x = cx + Math.cos(a) * r;
+    const y = cy + Math.sin(a) * r;
+
+    ctx.beginPath();
+    ctx.arc(x, y, 4, 0, Math.PI * 2);
+    ctx.fillStyle = axisColors[i];
+    ctx.fill();
+
+    const lx = cx + Math.cos(a) * (maxR + 20);
+    const ly = cy + Math.sin(a) * (maxR + 20);
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = '#5A7A8A';
+    ctx.font = '500 11px "Noto Sans JP", sans-serif';
+    ctx.fillText(lbls[i], lx, ly);
+  });
+}
+
+function retry() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  setTimeout(() => showScreen('startScreen'), 300);
+}
+</script>
+
+</body>
+</html>
