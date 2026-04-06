@@ -127,6 +127,74 @@
     text-decoration: underline;
   }
 
+  /* ===== PRIVACY MODAL ===== */
+  .modal-overlay {
+    display: none;
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    justify-content: center; align-items: center;
+    padding: 20px;
+  }
+  .modal-overlay.active {
+    display: flex;
+    animation: fadeIn 0.2s ease;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .modal-content {
+    background: var(--bg-card);
+    border-radius: 16px;
+    padding: 32px 28px;
+    max-width: 560px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+  }
+  .modal-content h2 {
+    font-size: 20px; font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .modal-content h3 {
+    font-size: 14px; font-weight: 700;
+    color: var(--primary);
+    margin-top: 20px;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--primary-light);
+  }
+  .modal-content p {
+    font-size: 13px; line-height: 1.9;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .modal-close {
+    display: block;
+    margin: 20px auto 0;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 14px; font-weight: 500;
+    color: var(--primary);
+    background: var(--primary-light);
+    border: none;
+    padding: 10px 32px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .modal-close:hover {
+    background: var(--primary);
+    color: #fff;
+  }
+  @media (max-width: 480px) {
+    .modal-content { padding: 24px 20px; }
+  }
+
   /* ===== QUESTION SCREEN ===== */
   .q-header {
     display: flex; justify-content: space-between; align-items: center;
@@ -506,7 +574,7 @@
           所要時間 約2分 ／ 無料 ／ 登録不要
         </div>
 
-        <div class="copyright">Copyright &copy;asobiari Inc. All rights reserved. <a href="privacy.html" target="_blank">プライバシーポリシー</a></div>
+        <div class="copyright">Copyright &copy;asobiari Inc. All rights reserved. <a href="#" onclick="openPrivacy();return false;">プライバシーポリシー</a></div>
       </div>
     </div>
   </div>
@@ -560,7 +628,7 @@
 
         <button class="retry-btn" onclick="retry()">もういちど診断する</button>
 
-        <div class="copyright">Copyright &copy;asobiari Inc. All rights reserved. <a href="privacy.html" target="_blank">プライバシーポリシー</a></div>
+        <div class="copyright">Copyright &copy;asobiari Inc. All rights reserved. <a href="#" onclick="openPrivacy();return false;">プライバシーポリシー</a></div>
       </div>
     </div>
   </div>
@@ -568,6 +636,45 @@
 </div>
 
 <div class="toast" id="toast"></div>
+
+<!-- Privacy Modal -->
+<div class="modal-overlay" id="privacyModal" onclick="if(event.target===this)closePrivacy()">
+  <div class="modal-content">
+    <h2>プライバシーポリシー</h2>
+    <h3>1. 運営者</h3>
+    <p>本サービス「ビジネス世界観診断」は、株式会社アソビアリ（以下「当社」）が運営しています。</p>
+    <h3>2. 診断における個人情報</h3>
+    <p>本診断では、お名前、メールアドレス、電話番号等の個人情報の入力を求めることはありません。診断の回答内容および結果は、すべてお使いのブラウザ上（クライアントサイド）で処理されます。当社のサーバーに診断データが送信されることはなく、当社が回答内容を取得・保存・閲覧することはできません。</p>
+    <h3>3. 無料相談のお申し込みにおける個人情報</h3>
+    <p>診断結果画面から無料相談にお申し込みいただく場合、外部予約サービス「TIMEREX」を通じて、お名前・メールアドレス等の個人情報をご入力いただきます。これらの情報は、無料相談の日程調整およびご連絡のために当社が利用いたします。</p>
+    <p>取得した個人情報は、以下の目的にのみ使用し、ご本人の同意なく第三者に提供することはありません。</p>
+    <p>・無料相談の日程調整および実施に関するご連絡<br>・相談内容に基づくサービスのご案内<br>・サービス向上のための統計的分析（個人を特定しない形で）</p>
+    <h3>4. Cookie・アクセス解析</h3>
+    <p>本診断ページ自体はCookieを使用していません。ただし、今後サービス改善のためにアクセス解析ツール（Google Analytics等）を導入する場合があります。その際は、Cookieを使用してアクセス数やページ閲覧状況等の統計データを収集しますが、個人を特定する情報は含まれません。</p>
+    <h3>5. 外部サービス</h3>
+    <p>本サービスでは、以下の外部サービスを利用しています。各サービスにおける情報の取り扱いについては、それぞれのプライバシーポリシーをご確認ください。</p>
+    <p>・TIMEREX（予約管理）：無料相談の日程予約に使用<br>・Google Fonts（Webフォント配信）：ページ表示時にフォントデータを取得</p>
+    <h3>6. 個人情報の管理</h3>
+    <p>当社は、取得した個人情報を適切に管理し、漏洩・滅失・毀損の防止に努めます。個人情報の開示・訂正・削除をご希望の方は、下記お問い合わせ先までご連絡ください。</p>
+    <h3>7. お問い合わせ</h3>
+    <p>株式会社アソビアリ<br>メール：info@asobiari.com</p>
+    <h3>8. 改定</h3>
+    <p>本ポリシーは、必要に応じて予告なく改定する場合があります。改定後のポリシーは、本ページに掲載した時点で効力を生じるものとします。</p>
+    <p style="font-size:12px;color:var(--text-dim);margin-top:16px;text-align:right;">制定日：2026年4月6日</p>
+    <button class="modal-close" onclick="closePrivacy()">閉じる</button>
+  </div>
+</div>
+
+<script>
+function openPrivacy() {
+  document.getElementById('privacyModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closePrivacy() {
+  document.getElementById('privacyModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+</script>
 
 <script>
 // ===== QUESTION DATA =====
