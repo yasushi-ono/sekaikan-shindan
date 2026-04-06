@@ -403,6 +403,16 @@
     box-shadow: 0 6px 20px rgba(58,123,213,0.35);
   }
 
+  .official-link {
+    display: block;
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .official-link:hover { color: var(--primary); text-decoration: underline; }
+
   .retry-btn {
     font-family: 'Noto Sans JP', sans-serif;
     font-size: 14px; color: var(--text-dim);
@@ -545,6 +555,7 @@
             60分の無料相談でお話しします。
           </p>
           <a href="https://timerex.net/s/yasushi_ono_1706_0699/e9ddf936" class="cta-btn" target="_blank" rel="noopener">無料相談に申し込む</a>
+          <a href="https://asobiari.com" class="official-link" target="_blank" rel="noopener">🌐 株式会社アソビアリ 公式サイト</a>
         </div>
 
         <button class="retry-btn" onclick="retry()">もういちど診断する</button>
