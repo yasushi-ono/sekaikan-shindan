@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yasushi-ono.github.io/sekaikan-shindan/sitemap.xml
