@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>12の世界観 — 幻想ビジネス世界観診断</title>
+<meta name="description" content="幻想ビジネス世界観診断の12の世界観をギャラリー形式で紹介。剣と魔法、サイバーパンク、宮廷ロマンス、おとぎ話など、各世界観の絵画とコンセプトを覗いてみよう。">
+<meta name="theme-color" content="#18100A">
+
+<!-- OGP -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="12の世界観 — 幻想ビジネス世界観診断">
+<meta property="og:description" content="12の幻想世界をギャラリーで紹介。あなたのビジネスはどの世界？">
+<meta property="og:image" content="https://wrld.asobiari.com/ogp.jpg">
+<meta property="og:url" content="https://wrld.asobiari.com/worlds.html">
+<meta property="og:locale" content="ja_JP">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wrld.asobiari.com/ogp.jpg">
+
+<link rel="canonical" href="https://wrld.asobiari.com/worlds.html">
+<meta name="robots" content="index, follow">
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Cormorant+Garamond:wght@500;600;700&family=Yuji+Mai&display=swap');
+
+  :root {
+    --bg: #18100A;
+    --primary: #7A5810;
+    --primary-light: #B8902F;
+    --text: #1F1208;
+    --text-light: #FAF0D8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background:
+      radial-gradient(ellipse at top, #2a1810 0%, #1F140A 50%, #0E0805 100%),
+      #18100A;
+    color: var(--text);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 16px;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 32px 24px;
+    background:
+      linear-gradient(rgba(220, 195, 145, 0.15), rgba(190, 160, 110, 0.2)),
+      url('アールヌーボー羊皮紙テクスチャ.png') center/cover;
+    background-color: #DEC396;
+    border-radius: 14px;
+    border: 2px solid rgba(80, 50, 20, 0.6);
+    box-shadow: 0 12px 48px rgba(15, 8, 3, 0.8);
+    position: relative;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border: 1px solid rgba(100, 65, 20, 0.35);
+    border-radius: 10px;
+    pointer-events: none;
+  }
+
+  header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: #0A0402;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    text-shadow: 0 1px 2px rgba(255, 240, 210, 0.6);
+  }
+
+  header .subtitle {
+    font-family: 'Yuji Mai', serif;
+    font-size: 26px;
+    color: #2A1A0A;
+    margin-bottom: 18px;
+    letter-spacing: 2px;
+    font-weight: 700;
+  }
+
+  header p {
+    font-size: 17px;
+    color: #100804;
+    font-weight: 700;
+    line-height: 2;
+    text-shadow: 0 1px 1px rgba(255, 240, 210, 0.6);
+  }
+
+  /* ===== GRID ===== */
+  .worlds-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .world-card {
+    cursor: pointer;
+    border-radius: 10px;
+    overflow: hidden;
+    background:
+      linear-gradient(135deg, #A07820 0%, #C9A961 50%, #A07820 100%);
+    padding: 8px;
+    box-shadow:
+      0 6px 16px rgba(15, 8, 3, 0.6),
+      inset 0 1px 0 rgba(255, 240, 200, 0.4);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+  }
+  .world-card::before {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border: 1px solid rgba(60, 35, 12, 0.5);
+    border-radius: 6px;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .world-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow:
+      0 16px 32px rgba(15, 8, 3, 0.8),
+      0 0 0 1px var(--primary-light),
+      inset 0 1px 0 rgba(255, 240, 200, 0.5);
+  }
+  .world-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    border-radius: 4px;
+  }
+  .world-card-name {
+    text-align: center;
+    padding: 12px 6px 6px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #FAF0D8;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+    line-height: 1.4;
+  }
+
+  /* ===== CTA ===== */
+  .cta-section {
+    text-align: center;
+    margin: 40px 0;
+    padding: 36px 24px;
+    background:
+      linear-gradient(rgba(220, 195, 145, 0.15), rgba(190, 160, 110, 0.2)),
+      url('アールヌーボー羊皮紙テクスチャ.png') center/cover;
+    background-color: #DEC396;
+    border-radius: 14px;
+    border: 2px solid rgba(80, 50, 20, 0.6);
+    box-shadow: 0 12px 48px rgba(15, 8, 3, 0.8);
+  }
+  .cta-section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    color: #0A0402;
+    margin-bottom: 16px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(255, 240, 210, 0.5);
+  }
+  .cta-section p {
+    font-size: 16px;
+    color: #100804;
+    font-weight: 700;
+    line-height: 1.9;
+    text-shadow: 0 1px 1px rgba(255, 240, 210, 0.5);
+  }
+  .cta-btn {
+    display: inline-block;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 19px;
+    font-weight: 700;
+    color: #FFF5E0;
+    background: linear-gradient(135deg, #7A1F1A 0%, #B02A20 50%, #7A1F1A 100%);
+    border: 2px solid #E8D4A0;
+    padding: 18px 56px;
+    border-radius: 40px;
+    cursor: pointer;
+    text-decoration: none;
+    letter-spacing: 3px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    box-shadow:
+      0 8px 24px rgba(122, 31, 26, 0.5),
+      inset 0 1px 0 rgba(255, 230, 200, 0.4);
+    transition: all 0.2s;
+  }
+  .cta-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    background: linear-gradient(135deg, #8C2A24 0%, #C8332A 50%, #8C2A24 100%);
+  }
+
+  /* ===== MODAL ===== */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 6, 3, 0.92);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  .modal-overlay.active {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .modal-content {
+    max-width: 720px;
+    width: 100%;
+    background:
+      linear-gradient(rgba(220, 195, 145, 0.15), rgba(190, 160, 110, 0.2)),
+      url('アールヌーボー羊皮紙テクスチャ.png') center/cover;
+    background-color: #DEC396;
+    border-radius: 16px;
+    border: 2px solid rgba(80, 50, 20, 0.7);
+    padding: 28px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: scaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  @keyframes scaleIn {
+    from { transform: scale(0.85); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  .modal-image {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 8px solid;
+    border-image: linear-gradient(135deg, #A07820 0%, #C9A961 50%, #A07820 100%) 1;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(15, 8, 3, 0.6);
+  }
+
+  .modal-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    color: #0A0402;
+    text-align: center;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(255, 240, 210, 0.6);
+  }
+  .modal-tagline {
+    font-family: 'Yuji Mai', serif;
+    font-size: 24px;
+    color: #2A1A0A;
+    text-align: center;
+    margin-bottom: 24px;
+    letter-spacing: 2px;
+    font-weight: 700;
+  }
+  .modal-desc {
+    font-size: 16px;
+    color: #100804;
+    line-height: 2;
+    font-weight: 700;
+    text-align: left;
+    margin-bottom: 20px;
+    text-shadow: 0 1px 1px rgba(255, 240, 210, 0.5);
+    padding: 0 8px;
+  }
+
+  .modal-levels {
+    margin: 24px 8px;
+    padding: 18px 20px;
+    background: rgba(60, 35, 12, 0.12);
+    border: 1px solid rgba(80, 50, 20, 0.4);
+    border-radius: 10px;
+  }
+  .modal-levels-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: #2A1A0A;
+    font-weight: 700;
+    letter-spacing: 4px;
+    margin-bottom: 14px;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(255, 240, 210, 0.5);
+  }
+  .level-row {
+    margin-bottom: 14px;
+    padding: 10px 0;
+    border-bottom: 1px dashed rgba(80, 50, 20, 0.4);
+  }
+  .level-row:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  .level-name {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 700;
+    color: #0A0402;
+    font-size: 16px;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+    text-shadow: 0 1px 1px rgba(255, 240, 210, 0.5);
+  }
+  .level-desc {
+    font-size: 14px;
+    color: #100804;
+    line-height: 1.9;
+    font-weight: 600;
+    text-shadow: 0 1px 0 rgba(255, 240, 210, 0.4);
+  }
+  .modal-close {
+    display: block;
+    margin: 0 auto;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #FAF0D8;
+    background: linear-gradient(135deg, #6B4015 0%, #8B5A20 50%, #6B4015 100%);
+    border: 2px solid #C9A961;
+    padding: 10px 32px;
+    border-radius: 24px;
+    cursor: pointer;
+    letter-spacing: 2px;
+  }
+  .modal-close:hover {
+    background: linear-gradient(135deg, #7B4F20 0%, #A06A28 50%, #7B4F20 100%);
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    text-align: center;
+    padding: 24px;
+    color: #C9A961;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  footer a {
+    color: #E8D4A0;
+    text-decoration: none;
+    font-weight: 700;
+    border-bottom: 1px solid rgba(232, 212, 160, 0.4);
+    padding-bottom: 2px;
+  }
+  footer a:hover {
+    color: #FFF5E0;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 800px) {
+    .worlds-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .world-card img { height: 160px; }
+    .world-card-name { font-size: 13px; }
+  }
+
+  @media (max-width: 560px) {
+    .worlds-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .world-card img { height: 180px; }
+    header h1 { font-size: 28px; }
+    header .subtitle { font-size: 18px; }
+    .modal-content { padding: 20px; }
+    .modal-name { font-size: 24px; }
+    .modal-tagline { font-size: 18px; }
+    .modal-desc { font-size: 15px; }
+  }
+
+  @media (max-width: 380px) {
+    .world-card img { height: 150px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <h1>12の幻想世界</h1>
+    <div class="subtitle">あなたのビジネスは、どの世界？</div>
+    <p>
+      幻想ビジネス世界観診断には、12の世界観があります。<br>
+      それぞれの絵画と物語を、覗いてみてください。
+    </p>
+  </header>
+
+  <!-- 12世界観グリッド -->
+  <div class="worlds-grid" id="worldsGrid"></div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <h2>あなたの世界はどれ？</h2>
+    <p style="margin-bottom: 24px;">14問・約3分の診断で、あなたの世界観が分かります。</p>
+    <a href="index.html" class="cta-btn">診断をはじめる</a>
+  </div>
+
+  <footer>
+    <p><a href="index.html">← 診断ページへ戻る</a></p>
+    <p style="margin-top: 12px;">Copyright &copy; asobiari Inc. All rights reserved.</p>
+  </footer>
+
+</div>
+
+<!-- モーダル -->
+<div class="modal-overlay" id="worldModal" onclick="if(event.target===this)closeModal()">
+  <div class="modal-content">
+    <img class="modal-image" id="modalImage" src="" alt="">
+    <h2 class="modal-name" id="modalName"></h2>
+    <div class="modal-tagline" id="modalTagline"></div>
+    <p class="modal-desc" id="modalDesc"></p>
+
+    <div class="modal-levels">
+      <div class="modal-levels-title">— 4 STAGES —</div>
+      <div id="modalLevels"></div>
+    </div>
+
+    <button class="modal-close" onclick="closeModal()">閉じる</button>
+  </div>
+</div>
+
+<script>
+// LV段階の定義
+const levelNames = ["混沌とした", "生まれたての", "発展途上の", "完成された"];
+
+// 12世界観データ
+const worlds = [
+  {
+    id: 1, name: "おとぎ話の村の世界",
+    tagline: "やさしさが、世界を守る",
+    image: "世界観ビジュアル/アールヌーボー/おとぎ話の村の世界.png",
+    desc: "やわらかい風が吹き、花が咲き、川がゆるやかに流れる。複雑さや疑念のない、純真でシンプルな安心感が空気そのものになっている世界。「ここに来ると、心がほどける」と感じさせる、やさしい場所。",
+    levels: [
+      "やさしさはあるのに、何のためか曖昧な段階。「いいところだね」と言われるが、村の輪郭が見えていない。",
+      "「人を安心させる」役割を持つと見え始めた段階。やさしさが言葉になり、誰のための村なのかが少しずつ形を持つ。",
+      "村全体が「ここに来れば安心できる」と信頼される空気を持ち、純真の軸が立った段階。",
+      "「あの村に行けば、まるで楽園のようだ」と語られる、純真の象徴的存在。"
+    ]
+  },
+  {
+    id: 2, name: "大航海時代の世界",
+    tagline: "地平線の向こうへ、まだ見ぬ景色を求めて",
+    image: "世界観ビジュアル/アールヌーボー/大航海時代の世界.png",
+    desc: "地図にない海を渡り、未知の大陸へと向かう船が出航する。自由と発見、地平線の彼方への希求がここに満ちている。「この世界に乗れば、新しい景色が見える」と感じさせる、地平線の引力。",
+    levels: [
+      "未踏への欲求はあるが、何を探しているか見えない段階。船は出るけれど、毎回違う海へ。輪郭がぼやけている。",
+      "「未踏の地を見つけ、その景色を持ち帰る」役割を持つと見え始めた段階。航海日誌が書かれ始める。",
+      "冒険そのものが価値として認識され、「あの船に乗れば新しい景色が見える」と信頼される段階。",
+      "冒険が時代を象徴する存在となり、「あの世界の地図」が次の指針になる、伝説の航海。"
+    ]
+  },
+  {
+    id: 3, name: "魔法学園の世界",
+    tagline: "真理を求める、知の探求",
+    image: "世界観ビジュアル/アールヌーボー/魔法学園の世界.png",
+    desc: "古い書物が積まれ、塔が空に伸び、深く長い思索の時間が流れている。真理を求める知的な探求と、知を次へ伝える落ち着いた空気が、人々を惹きつける。「ここに来れば、答えが見つかる」と信じられる知の場。",
+    levels: [
+      "知識や洞察はあるが、整理されず閉じ込められている段階。深さはあるが、外から見ると何の世界か見えない。",
+      "「真理を解き明かし、知を分かち合う」役割を持つと見え始めた段階。書庫の整理が始まり、入口に灯りがつく。",
+      "教えるべきこと、学ぶ場、伝えるルートが整い、「あの世界に問えば真理が見える」と信頼される段階。",
+      "知の象徴となり、「あの学園に学べ」と語り継がれる、知の伝説。"
+    ]
+  },
+  {
+    id: 4, name: "剣と魔法の世界",
+    tagline: "困難を越えていく、勇者の物語",
+    image: "世界観ビジュアル/アールヌーボー/剣と魔法の世界.png",
+    desc: "困難に立ち向かう力、目標に向かって突き進む推進力、人を鼓舞する勇気がここに宿っている。「ここに頼めば、必ずやり遂げる」と信じられる、頼もしさの源泉となる世界。",
+    levels: [
+      "力やスキルはあるが、何のために戦っているのか曖昧な段階。剣は振るえるが、目指す城が定まっていない。",
+      "「困難に挑んで突破する」物語だと見え始めた段階。倒すべき魔王が輪郭を持ち、戦う方向が見え始めている。",
+      "明確な敵と、それを倒すための装備が揃った状態。「ここに頼めば困難は越えられる」と信頼される段階。",
+      "語り継がれる物語として、世界そのものが伝説になった段階。「あの世界に学べ」と人々の記憶に刻まれる。"
+    ]
+  },
+  {
+    id: 5, name: "サイバーパンクの世界",
+    tagline: "古い秩序を壊し、新しい風を吹かせる",
+    image: "世界観ビジュアル/アールヌーボー/サイバーパンクの世界.png",
+    desc: "ネオンが瞬く裏路地。既存の秩序を疑い、ルールに縛られない自由が空気そのものになっている。「常識を壊して、新しい道を切り開く」その姿勢が、息苦しさを感じる人々を吸い寄せる磁力となる。",
+    levels: [
+      "既存への違和感はあるが、何に反対しているか曖昧な段階。「とがった世界」と言われるが、軸がない反抗。",
+      "「壊すことで新しい秩序を生む」役割を持つと見え始めた段階。何を変えたいかが輪郭を持ち始める。",
+      "反逆が物語として伝わり、「あの世界に共鳴したい」と仲間が集まる段階。壊すべき敵と新しく建てる旗が両方見える。",
+      "反逆が時代を象徴し、「あの世界が現実を変えた」と語られる存在。秩序を壊した先の新しい世界の象徴。"
+    ]
+  },
+  {
+    id: 6, name: "スチームパンクの世界",
+    tagline: "不可能を可能にする、変容の魔法",
+    image: "世界観ビジュアル/アールヌーボー/スチームパンクの世界.png",
+    desc: "歯車と蒸気が回る発明工房。不可能を可能にする発明、変化と魔法のような体験がここに宿る。「ここに触れると、世界が変わる」という、変容の魔力を持っている。",
+    levels: [
+      "アイデアや発明は次々生まれるが、何が本命か見えない段階。歯車は回っているが、形が定まらない。",
+      "「変容を起こす」役割を持つと見え始めた段階。試作の方向性が定まり、何を生み出したいかが輪郭を持つ。",
+      "発明が物語として認識され、「あの工房から世界が変わる」と期待される段階。変容を起こす世界の軸が立つ。",
+      "変容そのものが世界を動かす存在となり、「あの世界が時代を変えた」と語り継がれる伝説。"
+    ]
+  },
+  {
+    id: 7, name: "宮廷ロマンスの世界",
+    tagline: "美と親密さが、特別をつくる",
+    image: "世界観ビジュアル/アールヌーボー/宮廷ロマンスの世界.png",
+    desc: "シャンデリアが灯り、絹と宝石が輝き、美しさと親密さが空気そのものになっている広間。「ここに触れると、特別になれる」という、感性を揺さぶる引力。",
+    levels: [
+      "美意識やこだわりはあるが、何のためにあるか見えない段階。「センスがある」と言われるが、輪郭がぼやけている。",
+      "「美と親密さで人を満たす」役割を持つと見え始めた段階。美の方向性が定まり、誰に捧げるかが見え始める。",
+      "美しさと親密さが世界観として実装され、「あの世界に触れたい」と憧れられる段階。美と愛の象徴の軸が立つ。",
+      "美が文化となり、「あの世界が美の基準を作った」と語られる存在。憧れと官能の代名詞として記憶に残る。"
+    ]
+  },
+  {
+    id: 8, name: "下町・人情商店街の世界",
+    tagline: "等身大の温もり、人と人のあいだ",
+    image: "世界観ビジュアル/アールヌーボー/下町・人情商店街の世界.png",
+    desc: "提灯が揺れる商店街。誰でも気軽に立ち寄れる、肩肘張らない空気が流れる、等身大の街。「ここなら、ありのままでいい」と感じさせる、ほっとする居心地が魅力の根っこ。",
+    levels: [
+      "親しみやすさはあるが、何が得意か自分でも曖昧な段階。「いいところだよね」と言われるが、街の特徴が見えない。",
+      "「等身大の安心を提供する」役割を持つと見え始めた段階。誰のための街か、何が並ぶ商店街かが見え始める。",
+      "親しみやすさと信頼が世界観として実装され、「困ったらあそこに行く」が成立している段階。",
+      "「あそこに行けば、私の暮らしがある」と語られる、生活の象徴的存在。街そのものが文化として記憶される。"
+    ]
+  },
+  {
+    id: 9, name: "サーカスの世界",
+    tagline: "退屈を許さない、笑いの祝祭",
+    image: "世界観ビジュアル/アールヌーボー/サーカスの世界.png",
+    desc: "テントが立ち、音楽が鳴り、歓声と笑いが響き渡る祝祭場。退屈を許さず、瞬間瞬間を遊びに変える力がここにある。「ここに来ると、人生が軽くなる」という、楽しさの引力。",
+    levels: [
+      "楽しさや遊び心はあるが、何のためにあるか曖昧な段階。「面白い感じ」と言われるが、世界の輪郭が見えない。",
+      "「楽しさで人を救う」役割を持つと見え始めた段階。何を笑わせたいか、誰を楽しませたいかが見え始める。",
+      "遊びと楽しさが世界観として実装され、「あの世界に行けば笑える」と信頼される段階。ユーモアの軸が立つ。",
+      "楽しさが文化となり、「あの世界が時代を笑わせた」と語られる存在。遊びの代名詞として、世代を超えて愛される。"
+    ]
+  },
+  {
+    id: 10, name: "癒しの森の世界",
+    tagline: "傷ついた人を、そっと整える",
+    image: "世界観ビジュアル/アールヌーボー/癒しの森の世界.png",
+    desc: "深い森の奥にある癒しの場所。湯けむりが立ち、苔むした石が並び、時間がゆっくりと流れている。「ここに来れば、自然と整っていく」という、安心と保護のぬくもり。",
+    levels: [
+      "人を整える力はあるが、どこまでやるかが案件ごとに揺れやすい段階。来る人は癒されても、世界側は手探り。",
+      "「そっと整える、寄り添う」役割を持つと見え始めた段階。場づくりや距離感が、自分なりの形に寄ってくる。",
+      "「この空気に浸かりたいから」と人が来て戻る理由が言える状態。保護と信頼の軸が立つ。",
+      "「疲れたら一度あそこに行くといい」と語られる避難所。ケアの代名詞として、人の記憶に深く刻まれる。"
+    ]
+  },
+  {
+    id: 11, name: "アトリエの世界",
+    tagline: "まだ世にないものを、形にする",
+    image: "世界観ビジュアル/アールヌーボー/アトリエの世界.png",
+    desc: "絵筆と画材が並ぶアトリエ。まだ世にない美しいものを生み出す手と、想像力の翼がここに宿る。「ここから新しい何かが生まれる」という、創造の磁力。",
+    levels: [
+      "創造のエネルギーはあるが、何を生み出したいかが定まらない段階。「センスがある」と言われるが、何の世界か見えない。",
+      "「世にないものを形にする」役割を持つと見え始めた段階。何を表現したいか、誰のために作るかが見え始める。",
+      "創造が世界観として実装され、「あの世界からは新しいものが生まれる」と期待される段階。創造の軸が立つ。",
+      "創造が時代を作る存在となり、「あの世界が新しい美を生んだ」と語り継がれる、創造の聖地。"
+    ]
+  },
+  {
+    id: 12, name: "王宮の世界",
+    tagline: "秩序と品格が、人々を導く",
+    image: "世界観ビジュアル/アールヌーボー/王宮の世界.png",
+    desc: "玉座と紋章が輝く王宮。秩序、そして揺るがない品格がここに宿る。「ここに従えば、間違いがない」という、絶対的な信頼を生む権威の輝き。",
+    levels: [
+      "品格や志はあるが、何の権威なのか曖昧な段階。「ちゃんとしてる」と言われるが、何を統治する世界か見えない。",
+      "「秩序を保ち、人々を導く」役割を持つと見え始めた段階。何の領域の王であるか、何を守るかが見え始める。",
+      "権威と品格が世界観として実装され、「あの世界に倣えば間違いない」と信頼される段階。権威の軸が立つ。",
+      "権威が文化となり、「あの世界が業界の基準を作った」と語られる存在。権威の代名詞として、長く君臨する。"
+    ]
+  }
+];
+
+// グリッドレンダリング
+const grid = document.getElementById('worldsGrid');
+worlds.forEach(world => {
+  const card = document.createElement('div');
+  card.className = 'world-card';
+  card.onclick = () => openModal(world);
+  card.innerHTML = `
+    <img src="${world.image}" alt="${world.name}" loading="lazy">
+    <div class="world-card-name">${world.name}</div>
+  `;
+  grid.appendChild(card);
+});
+
+// モーダル開閉
+function openModal(world) {
+  document.getElementById('modalImage').src = world.image;
+  document.getElementById('modalImage').alt = world.name;
+  document.getElementById('modalName').textContent = world.name;
+  document.getElementById('modalTagline').textContent = `— ${world.tagline}`;
+  document.getElementById('modalDesc').textContent = world.desc;
+
+  // 4LV段階を表示
+  const levelsHtml = world.levels.map((desc, i) => `
+    <div class="level-row">
+      <div class="level-name">LV${i+1} ${levelNames[i]}${world.name}</div>
+      <div class="level-desc">${desc}</div>
+    </div>
+  `).join('');
+  document.getElementById('modalLevels').innerHTML = levelsHtml;
+
+  document.getElementById('worldModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+  // モーダル内をトップにスクロール
+  document.querySelector('.modal-content').scrollTop = 0;
+}
+function closeModal() {
+  document.getElementById('worldModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// ESCキーで閉じる
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeModal();
+});
+</script>
+
+</body>
+</html>
