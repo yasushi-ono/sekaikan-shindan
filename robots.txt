@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://yasushi-ono.github.io/sekaikan-shindan/sitemap.xml
+Sitemap: https://wrld.asobiari.com/sitemap.xml
