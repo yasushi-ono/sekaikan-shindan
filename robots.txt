@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Sitemap: https://asobiari.com/sitemap.xml
 
-Sitemap: https://wrld.asobiari.com/sitemap.xml
+Content-Signal: ai-train=no, search=yes, ai-input=no
